@@ -47,7 +47,10 @@ class HomePage extends Component {
                 </Form.Field>
                 <Form.Field>
                   <Form.Control>
-                    <Button className="is-link">Play</Button>
+                    <Button className="is-link"
+                            onClick={() => this.props.openPage('game-page')}>
+                            Play
+                    </Button>
                   </Form.Control>
                 </Form.Field>
                 <Form.Field>

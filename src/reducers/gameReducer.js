@@ -23,7 +23,8 @@ const currentQuestion = (question, questionNumber, index) => {
       category: question[index].category,
       questionNumber: questionNumber,
       question: question[index].question,
-      answers: allAnswers(question[index])
+      answers: allAnswers(question[index]),
+      isAnswered: false
     }
   )
 }
@@ -33,11 +34,13 @@ const inititalState = {
 }
 
 const gameReducer = (state = inititalState, action) => {
-  const newCurrentQuestion = {...state}
+  const newCurrentQuestion = {...state}.currentQuestion
 
   switch (action.type) {
     case 'SELECT_ANSWER':
       newCurrentQuestion.answers[action.index].isSelected = true
+      newCurrentQuestion.isAnswered = true
+      console.log(newCurrentQuestion)
       return {
         currentQuestion: newCurrentQuestion
       }

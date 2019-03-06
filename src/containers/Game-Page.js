@@ -20,6 +20,7 @@ class GamePage extends Component {
     }
   }
   render() {
+    console.log(this.props.currentQuestion)
     return (
       <div>
         <Box className="m-auto">
@@ -47,7 +48,7 @@ class GamePage extends Component {
                 </Tile>
               </Tile>
             </Tile>
-            <Answers questionArray={this.props.currentQuestion} />
+            <Answers />
           </Container>
           <Level renderAs="nav" className="questionNumber">
             <Level.Item style={{textAlign: 'center'}}>
