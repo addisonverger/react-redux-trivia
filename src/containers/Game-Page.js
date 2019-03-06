@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Answers from './Answers.js'
+import Menu from './Menu.js'
 
 import {Box} from 'react-bulma-components/full'
 import {Container} from 'react-bulma-components/full'
@@ -35,15 +36,13 @@ class GamePage extends Component {
               </Level.Side>
               <Level.Side align="right">
                 <Level.Item>
-                  <Heading size={4}>
-                    Menu
-                  </Heading>
+                  <Menu openPage={this.props.openPage}/>
                 </Level.Item>
               </Level.Side>
             </Level>
             <Tile kind="ancestor">
               <Tile kind="parent">
-                <Tile kind="child" notification color="link">
+                <Tile kind="child" notification color="primary">
                   <p>{this.props.currentQuestion.question}</p>
                 </Tile>
               </Tile>
