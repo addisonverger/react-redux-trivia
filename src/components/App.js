@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import HomePage from '../containers/Home-Page.js'
+import GamePage from '../containers/Game-Page.js'
 
 import {Columns} from 'react-bulma-components/full';
 
@@ -13,6 +14,7 @@ class App extends Component {
             <Columns className="is-centered">
               <Columns.Column className="is-three-quarters">
                 <HomePage />
+                {/* <GamePage /> */}
               </Columns.Column>
             </Columns>
           </div>

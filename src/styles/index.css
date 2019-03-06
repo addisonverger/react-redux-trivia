@@ -8,6 +8,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.box {
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.questionNumber {
+  margin-top: 1.5rem
+}
+
+section {
+  padding: 3em 3em
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
