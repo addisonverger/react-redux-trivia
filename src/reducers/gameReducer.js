@@ -22,6 +22,7 @@ const currentQuestion = (question, questionNumber, index) => {
     {
       category: question[index].category,
       questionNumber: questionNumber,
+      index: index,
       question: question[index].question,
       answers: allAnswers(question[index]),
       nextQuestion: false
@@ -53,9 +54,13 @@ const gameReducer = (state = inititalState, action) => {
         }
       })
       newCurrentQuestion.nextQuestion = true
-      console.log(newCurrentQuestion)
       return {
         currentQuestion: newCurrentQuestion
+      }
+
+    case 'NEXT_QUESTION':
+      return {
+        currentQuestion: currentQuestion(sampleQuestions.results, ++state.currentQuestion.questionNumber, ++state.currentQuestion.index)
       }
 
     default:
