@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Answers from './Answers.js'
 import Menu from './Menu.js'
+import NextQuestion from './NextQuestion.js'
 
 import {Box} from 'react-bulma-components/full'
 import {Container} from 'react-bulma-components/full'
@@ -21,7 +22,6 @@ class GamePage extends Component {
     }
   }
   render() {
-    console.log(this.props.currentQuestion)
     return (
       <div>
         <Box className="m-auto">
@@ -55,6 +55,7 @@ class GamePage extends Component {
                 {this.props.currentQuestion.questionNumber}/10
               </Heading>
             </Level.Item>
+            {this.props.currentQuestion.nextQuestion ? <NextQuestion /> : ''}
           </Level>
         </Box>
       </div>
@@ -67,7 +68,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateQuestion: (currentQuestion) => dispatch({type: 'NEXT_QUESTION'})
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

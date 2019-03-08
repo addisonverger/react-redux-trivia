@@ -28,8 +28,6 @@ class App extends Component {
           <div className="page-wrapper">
             <Columns className="is-centered">
               <Columns.Column className="is-three-quarters">
-                {/* <HomePage /> */}
-                {/* <GamePage /> */}
                 { contents[this.state.currentPage] }
               </Columns.Column>
             </Columns>
