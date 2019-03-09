@@ -10,7 +10,7 @@ const NextQuestion = (props) => {
         <Level.Item>
           <Button type="button"
                   className="is-link"
-                  onClick={() => props.nextQuestion()}>
+                  onClick={() => props.updateQuestion()}>
             Next Question
           </Button>
         </Level.Item>

@@ -55,8 +55,8 @@ class GamePage extends Component {
                 {this.props.currentQuestion.questionNumber}/10
               </Heading>
             </Level.Item>
-            {this.props.currentQuestion.nextQuestion ?
-              <NextQuestion nextQuestion={this.props.nextQuestion}/> : ''}
+            {this.props.currentQuestion.nextQuestionButton ?
+              <NextQuestion updateQuestion={this.props.updateQuestion}/> : ''}
           </Level>
         </Box>
       </div>
@@ -69,7 +69,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  nextQuestion: () => dispatch({type: 'NEXT_QUESTION'})
+  updateQuestion: () => dispatch({type: 'UPDATE_QUESTION'})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

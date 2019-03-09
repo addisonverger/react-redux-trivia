@@ -10,6 +10,14 @@ class Answers extends Component {
 
     }
   }
+  handleSelectAnswer(index) {
+    let isSelected = this.props.currentQuestion.answers.find((answer) => {
+      return answer.isSelected === true
+    })
+    if (isSelected === undefined) {
+      this.props.selectAnswer(index)
+    }
+  }
   render() {
     return (
       <Tile kind="ancestor">
@@ -19,7 +27,7 @@ class Answers extends Component {
               <Tile key={index}
                     kind="child"
                     color={answer.color}
-                    onClick={() => this.props.selectAnswer(index)}
+                    onClick={() => this.handleSelectAnswer(index)}
                     notification>
                 <p>{answer.text}</p>
               </Tile>
