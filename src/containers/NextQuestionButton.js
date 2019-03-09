@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {Level} from 'react-bulma-components/full'
 import {Button} from 'react-bulma-components/full'
 
-const NextQuestion = (props) => {
+const NextQuestionButton = (props) => {
   return (
     <div>
       <Level.Side align="right">
@@ -19,4 +19,4 @@ const NextQuestion = (props) => {
   )
 }
 
-export default NextQuestion
+export default NextQuestionButton

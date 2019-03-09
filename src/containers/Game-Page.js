@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import Answers from './Answers.js'
 import Menu from './Menu.js'
-import NextQuestion from './NextQuestion.js'
+import NextQuestionButton from './NextQuestionButton.js'
+import ScoreButton from './ScoreButton.js'
 
 import {Box} from 'react-bulma-components/full'
 import {Container} from 'react-bulma-components/full'
@@ -56,7 +57,9 @@ class GamePage extends Component {
               </Heading>
             </Level.Item>
             {this.props.currentQuestion.nextQuestionButton ?
-              <NextQuestion updateQuestion={this.props.updateQuestion}/> : ''}
+              <NextQuestionButton updateQuestion={this.props.updateQuestion}/> : ''}
+            {this.props.currentQuestion.scoreButton ?
+              <ScoreButton openPage={this.props.openPage}/> : ''}
           </Level>
         </Box>
       </div>

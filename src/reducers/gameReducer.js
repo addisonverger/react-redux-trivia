@@ -25,7 +25,8 @@ const currentQuestion = (question, questionNumber, index) => {
       index: index,
       question: question[index].question,
       answers: allAnswers(question[index]),
-      nextQuestionButton: false
+      nextQuestionButton: false,
+      scoreButton: false
     }
   )
 }
@@ -41,6 +42,7 @@ function deepCopy(x) {
 
 const gameReducer = (state = inititalState, action) => {
   let newCurrentQuestion = deepCopy(state.currentQuestion)
+  let newScore = deepCopy(state.score)
 
   switch (action.type) {
     case 'SELECT_ANSWER':
@@ -48,16 +50,23 @@ const gameReducer = (state = inititalState, action) => {
       newCurrentQuestion.answers.map((answer) => {
         if (answer.isCorrect) {
           answer.color = "success"
+           if (answer.isSelected) {
+             newScore = ++state.score
+           }
         } else if (answer.isSelected && !answer.isCorrect) {
           answer.color = "danger"
         } else {
           answer.color = null
         }
       })
-      newCurrentQuestion.nextQuestionButton = true
+      if (newCurrentQuestion.questionNumber === sampleQuestions.results.length) {
+        newCurrentQuestion.scoreButton = true
+      } else {
+        newCurrentQuestion.nextQuestionButton = true
+      }
       return {
-        ...state,
-        currentQuestion: newCurrentQuestion
+        currentQuestion: newCurrentQuestion,
+        score: newScore
       }
 
     case 'UPDATE_QUESTION':
