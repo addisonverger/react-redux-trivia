@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import About from './About.js'
 
@@ -9,7 +10,27 @@ import {Form} from 'react-bulma-components/full'
 import {Button} from 'react-bulma-components/full'
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      categories: []
+    }
+  }
+  // handlePlay(pass info from selects) {
+  //   // get info from the selects for the api called
+  //   // fetch the api based on previous
+  //   // .then console log (then dispatch to store)
+  // }
+  componentDidMount() {
+    axios.get('https://opentdb.com/api_category.php')
+    .then((response) => {
+      this.setState({
+        categories: response.data.trivia_categories
+      })
+    })
+  }
   render() {
+    console.log(this.state)
     return (
       <div>
         <Box className="m-auto">
@@ -27,9 +48,11 @@ class HomePage extends Component {
                   </Form.Label>
                   <Form.Control>
                     <Form.Select>
-                      <option value="category1">Category 1</option>
-                      <option value="category2">Category 2</option>
-                      <option value="category3">Category 3</option>
+                      {this.state.categories.map((category) => {
+                        return (
+                          <option value={category.id}>{category.name}</option>
+                        )
+                      })}
                     </Form.Select>
                   </Form.Control>
                 </Form.Field>
