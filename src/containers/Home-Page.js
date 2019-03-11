@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
 
 import About from './About.js'
@@ -13,14 +14,11 @@ class HomePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      categories: []
+      categories: [],
+      categoryValue: '',
+      difficultyValue: ''
     }
   }
-  // handlePlay(pass info from selects) {
-  //   // get info from the selects for the api called
-  //   // fetch the api based on previous
-  //   // .then console log (then dispatch to store)
-  // }
   componentDidMount() {
     axios.get('https://opentdb.com/api_category.php')
     .then((response) => {
@@ -28,9 +26,31 @@ class HomePage extends Component {
         categories: response.data.trivia_categories
       })
     })
+    .catch((error) => {console.log(error)})
+  }
+  updateCategory(event) {
+    this.setState({
+      categoryValue: event.target.value
+    })
+  }
+  updateDifficulty(event) {
+    this.setState({
+      difficultyValue: event.target.value
+    })
+  }
+  handlePlay(event) {
+    event.preventDefault()
+    const categoryParam = (this.state.categoryValue === '' ? '' : '&category=' + this.state.categoryValue)
+    const difficultyParam = (this.state.difficultyValue === '' ? '' : '&difficulty=' + this.state.difficultyValue)
+    axios.get('https://opentdb.com/api.php?amount=10&type=multiple' +
+    categoryParam + difficultyParam)
+    .then((response) => {
+      this.props.updateQuestionSet(response.data)
+      this.props.openPage('game-page')
+    })
+    .catch((error) => {console.log(error)})
   }
   render() {
-    console.log(this.state)
     return (
       <div>
         <Box className="m-auto">
@@ -41,16 +61,23 @@ class HomePage extends Component {
               </h2>
             </Section>
             <Section>
-              <form>
+              <form onSubmit={(event) => this.handlePlay(event)}>
                 <Form.Field>
                   <Form.Label>
                     Categories
                   </Form.Label>
                   <Form.Control>
-                    <Form.Select>
+                    <Form.Select value={this.state.categoryValue}
+                                onChange={(event) => this.updateCategory(event)}>
+                      <option key="0" value="">
+                        Any Category
+                      </option>
                       {this.state.categories.map((category) => {
                         return (
-                          <option value={category.id}>{category.name}</option>
+                          <option key={category.id}
+                                  value={category.id}>
+                            {category.name}
+                          </option>
                         )
                       })}
                     </Form.Select>
@@ -61,7 +88,9 @@ class HomePage extends Component {
                     Difficulty
                   </Form.Label>
                   <Form.Control>
-                    <Form.Select>
+                    <Form.Select value={this.state.difficultyValue}
+                                onChange={(event) => this.updateDifficulty(event)}>
+                      <option value="">Any Difficulty</option>
                       <option value="easy">Easy</option>
                       <option value="medium">Medium</option>
                       <option value="hard">Hard</option>
@@ -71,8 +100,8 @@ class HomePage extends Component {
                 <Form.Field>
                   <Form.Control>
                     <Button className="is-link"
-                            onClick={() => this.props.openPage('game-page')}>
-                            Play
+                            type="submit">
+                      Play
                     </Button>
                   </Form.Control>
                 </Form.Field>
@@ -90,4 +119,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+const mapDispatchToProps = (dispatch) => ({
+  updateQuestionSet: (response) => dispatch({type: 'UPDATE_QUESTION_SET', data: response})
+})
+
+export default connect(null, mapDispatchToProps)(HomePage)
