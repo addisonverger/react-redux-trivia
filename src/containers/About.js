@@ -27,8 +27,8 @@ class About extends Component {
                 About
               </Message.Header>
               <Message.Body>
-                Trivia is a basic trivia game. Users can select the trivia category,
-                the level of difficulty and play a round of trivia.
+                Small Potatoes is a basic trivia game. First select a trivia category and
+                level of difficulty. Then play a 10 question round of trivia. 
               </Message.Body>
             </Message>
           </Modal.Content>

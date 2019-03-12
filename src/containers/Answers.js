@@ -29,7 +29,7 @@ class Answers extends Component {
                     color={answer.color}
                     onClick={() => this.handleSelectAnswer(index)}
                     notification>
-                <p>{answer.text}</p>
+                <p>{this.props.decodeHtml(answer.text)}</p>
               </Tile>
             )
           })}

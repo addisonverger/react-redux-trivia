@@ -57,7 +57,7 @@ class HomePage extends Component {
           <Container>
             <Section>
               <h2 className="title is-2 is-centered">
-                Trivia Game
+                Small Potatoes
               </h2>
             </Section>
             <Section>

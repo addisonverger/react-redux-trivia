@@ -14,6 +14,11 @@ import {Heading} from 'react-bulma-components/full'
 import {Icon} from 'react-bulma-components/full'
 import {Tile} from 'react-bulma-components/full'
 
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
 
 class GamePage extends Component {
   constructor(props) {
@@ -44,11 +49,11 @@ class GamePage extends Component {
             <Tile kind="ancestor">
               <Tile kind="parent">
                 <Tile kind="child" notification color="primary">
-                  <p>{this.props.currentQuestion.question}</p>
+                  <p>{decodeHtml(this.props.currentQuestion.question)}</p>
                 </Tile>
               </Tile>
             </Tile>
-            <Answers />
+            <Answers decodeHtml={decodeHtml}/>
           </Container>
           <Level renderAs="nav" className="questionNumber">
             <Level.Item style={{textAlign: 'center'}}>
