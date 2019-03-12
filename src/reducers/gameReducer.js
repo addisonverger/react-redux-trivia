@@ -50,10 +50,11 @@ const gameReducer = (state = inititalState, action) => {
     case 'UPDATE_QUESTION_SET':
       newQuestionSet = action.data
       newCurrentQuestion = currentQuestion(action.data.results, 1, 0)
+      newScore = 0
       return {
-        ...state,
         questionSet: newQuestionSet,
-        currentQuestion: newCurrentQuestion
+        currentQuestion: newCurrentQuestion,
+        score: newScore
       }
 
     case 'SELECT_ANSWER':
