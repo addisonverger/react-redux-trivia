@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import '../styles/App.css';
 import HomePage from '../containers/Home-Page.js'
 import GamePage from '../containers/Game-Page.js'
@@ -21,8 +23,12 @@ class App extends Component {
   render() {
     const contents = {
       'home-page': <HomePage openPage={this.openPage}/>,
-      'game-page': <GamePage openPage={this.openPage}/>,
-      'score-page': <ScorePage openPage={this.openPage}/>
+      'game-page': <GamePage openPage={this.openPage}
+                            currentQuestion={this.props.currentQuestion}
+                            updateQuestion={this.props.updateQuestion}
+                            selectAnswer={this.props.selectAnswer}/>,
+      'score-page': <ScorePage openPage={this.openPage}
+                                score={this.props.score}/>
     }
     return (
       <div>
@@ -40,4 +46,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentQuestion: state.currentQuestion,
+  score: state.score
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  updateQuestion: () => dispatch({type: 'UPDATE_QUESTION'}),
+  selectAnswer: (index) => dispatch({type: 'SELECT_ANSWER', index: index})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -6,7 +6,7 @@ import About from './About.js'
 
 import {Box} from 'react-bulma-components/full'
 import {Section} from 'react-bulma-components/full'
-import {Container} from 'react-bulma-components/full'
+import {Heading} from 'react-bulma-components/full'
 import {Form} from 'react-bulma-components/full'
 import {Button} from 'react-bulma-components/full'
 
@@ -54,65 +54,66 @@ class HomePage extends Component {
     return (
       <div>
         <Box className="m-auto">
-          <Container>
-            <Section>
-              <h2 className="title is-2 is-centered">
-                Small Potatoes
-              </h2>
-            </Section>
-            <Section>
-              <form onSubmit={(event) => this.handlePlay(event)}>
-                <Form.Field>
-                  <Form.Label>
-                    Categories
-                  </Form.Label>
-                  <Form.Control>
-                    <Form.Select value={this.state.categoryValue}
-                                onChange={(event) => this.updateCategory(event)}>
-                      <option key="0" value="">
-                        Any Category
-                      </option>
-                      {this.state.categories.map((category) => {
-                        return (
-                          <option key={category.id}
-                                  value={category.id}>
-                            {category.name}
-                          </option>
-                        )
-                      })}
-                    </Form.Select>
-                  </Form.Control>
-                </Form.Field>
-                <Form.Field>
-                  <Form.Label>
-                    Difficulty
-                  </Form.Label>
-                  <Form.Control>
-                    <Form.Select value={this.state.difficultyValue}
-                                onChange={(event) => this.updateDifficulty(event)}>
-                      <option value="">Any Difficulty</option>
-                      <option value="easy">Easy</option>
-                      <option value="medium">Medium</option>
-                      <option value="hard">Hard</option>
-                    </Form.Select>
-                  </Form.Control>
-                </Form.Field>
-                <Form.Field>
-                  <Form.Control>
-                    <Button className="is-link"
-                            type="submit">
-                      Play
-                    </Button>
-                  </Form.Control>
-                </Form.Field>
-                <Form.Field>
-                  <Form.Control>
-                    <About />
-                  </Form.Control>
-                </Form.Field>
-              </form>
-            </Section>
-          </Container>
+          <Section>
+            <Heading size={2}
+                    className="has-text-primary">
+              Small Potatoes
+            </Heading>
+          </Section>
+          <Section>
+            <form onSubmit={(event) => this.handlePlay(event)}>
+              <Form.Field>
+                <Form.Label>
+                  Categories
+                </Form.Label>
+                <Form.Control>
+                  <Form.Select value={this.state.categoryValue}
+                              onChange={(event) => this.updateCategory(event)}
+                              className="is-fullwidth">
+                    <option key="0" value="">
+                      Any Category
+                    </option>
+                    {this.state.categories.map((category) => {
+                      return (
+                        <option key={category.id}
+                                value={category.id}>
+                          {category.name}
+                        </option>
+                      )
+                    })}
+                  </Form.Select>
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Label>
+                  Difficulty
+                </Form.Label>
+                <Form.Control>
+                  <Form.Select value={this.state.difficultyValue}
+                              onChange={(event) => this.updateDifficulty(event)}
+                              className="is-fullwidth">
+                    <option value="">Any Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </Form.Select>
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Control>
+                  <Button className="is-link is-fullwidth"
+                          type="submit">
+                    Play
+                  </Button>
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Control>
+                  <About />
+                </Form.Control>
+              </Form.Field>
+            </form>
+          </Section>
         </Box>
       </div>
     )

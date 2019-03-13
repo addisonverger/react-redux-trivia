@@ -1,5 +1,3 @@
-import sampleQuestions from '../sampleQuestions.js'
-
 const allAnswers = (question) => {
   let answers = question.incorrect_answers.slice().map((answer) => {
     return (
@@ -58,23 +56,28 @@ const gameReducer = (state = inititalState, action) => {
       }
 
     case 'SELECT_ANSWER':
-      newCurrentQuestion.answers[action.index].isSelected = true
-      newCurrentQuestion.answers.map((answer) => {
-        if (answer.isCorrect) {
-          answer.color = "success"
-           if (answer.isSelected) {
-             newScore = ++state.score
-           }
-        } else if (answer.isSelected && !answer.isCorrect) {
-          answer.color = "danger"
-        } else {
-          answer.color = null
-        }
+      let isSelected = newCurrentQuestion.answers.find((answer) => {
+        return answer.isSelected === true
       })
-      if (newCurrentQuestion.questionNumber === state.questionSet.results.length) {
-        newCurrentQuestion.scoreButton = true
-      } else {
-        newCurrentQuestion.nextQuestionButton = true
+      if (isSelected === undefined) {
+        newCurrentQuestion.answers[action.index].isSelected = true
+        newCurrentQuestion.answers.forEach((answer) => {
+          if (answer.isCorrect) {
+            answer.color = "success"
+             if (answer.isSelected) {
+               newScore = ++state.score
+             }
+          } else if (answer.isSelected && !answer.isCorrect) {
+            answer.color = "danger"
+          } else {
+            answer.color = null
+          }
+        })
+        if (newCurrentQuestion.questionNumber === state.questionSet.results.length) {
+          newCurrentQuestion.scoreButton = true
+        } else {
+          newCurrentQuestion.nextQuestionButton = true
+        }
       }
       return {
         ...state,

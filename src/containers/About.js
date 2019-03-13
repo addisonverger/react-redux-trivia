@@ -19,7 +19,7 @@ class About extends Component {
   render() {
     return (
       <div>
-        <Button type="button" className="is-link" onClick={() => this.toggleModal()}>About</Button>
+        <Button type="button" className="is-link is-fullwidth" onClick={() => this.toggleModal()}>About</Button>
         <Modal show={this.state.open} onClose={() => this.toggleModal()}>
           <Modal.Content>
             <Message className="is-link">
@@ -28,7 +28,7 @@ class About extends Component {
               </Message.Header>
               <Message.Body>
                 Small Potatoes is a basic trivia game. First select a trivia category and
-                level of difficulty. Then play a 10 question round of trivia. 
+                level of difficulty. Then play a 10 question round of trivia.
               </Message.Body>
             </Message>
           </Modal.Content>
