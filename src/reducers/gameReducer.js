@@ -32,7 +32,8 @@ const currentQuestion = (question, questionNumber, index) => {
 const inititalState = {
   questionSet: {},
   currentQuestion: {},
-  score: 0
+  score: 0,
+  time: ''
 }
 
 function deepCopy(x) {
@@ -43,6 +44,7 @@ const gameReducer = (state = inititalState, action) => {
   let newQuestionSet = deepCopy(state.questionSet)
   let newCurrentQuestion = deepCopy(state.currentQuestion)
   let newScore = deepCopy(state.score)
+  let newTime = deepCopy(state.time)
 
   switch (action.type) {
     case 'UPDATE_QUESTION_SET':
@@ -50,6 +52,7 @@ const gameReducer = (state = inititalState, action) => {
       newCurrentQuestion = currentQuestion(action.data.results, 1, 0)
       newScore = 0
       return {
+        ...state,
         questionSet: newQuestionSet,
         currentQuestion: newCurrentQuestion,
         score: newScore
@@ -90,6 +93,13 @@ const gameReducer = (state = inititalState, action) => {
       return {
         ...state,
         currentQuestion: newCurrentQuestion
+      }
+
+    case 'UPDATE_TIME':
+      newTime = action.time
+      return {
+        ...state,
+        time: newTime
       }
 
     default:

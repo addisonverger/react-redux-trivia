@@ -33,6 +33,13 @@ const ScorePage = (props) => {
             </Heading>
           </Level.Item>
         </Level>
+        <Level>
+          <Level.Item>
+            <Heading size={2}>
+              {props.time}
+            </Heading>
+          </Level.Item>
+        </Level>
         <Level className="questionNumber">
           <Button type="button"
                   className="is-link is-medium is-fullwidth"

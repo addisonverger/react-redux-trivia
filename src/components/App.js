@@ -24,7 +24,6 @@ class App extends Component {
   componentDidMount() {
     axios.get('https://api.giphy.com/v1/stickers/random?api_key=3DtOtJIBdw5PBylAeiZEFPp0pAdKYlbH')
     .then((response) => {
-      console.log(response.data.data.images.original.url)
       let responseURL = 'url(' + response.data.data.images.original.url + ')'
       document.body.style.backgroundImage = responseURL
       document.body.style.backgroundRepeat = "repeat"
@@ -35,12 +34,10 @@ class App extends Component {
   render() {
     const contents = {
       'home-page': <HomePage openPage={this.openPage}/>,
-      'game-page': <GamePage openPage={this.openPage}
-                            currentQuestion={this.props.currentQuestion}
-                            updateQuestion={this.props.updateQuestion}
-                            selectAnswer={this.props.selectAnswer}/>,
+      'game-page': <GamePage openPage={this.openPage}/>,
       'score-page': <ScorePage openPage={this.openPage}
-                                score={this.props.score}/>
+                                score={this.props.score}
+                                time={this.props.time}/>
     }
     return (
       <div>
@@ -59,13 +56,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  currentQuestion: state.currentQuestion,
-  score: state.score
+  score: state.score,
+  time: state.time
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  updateQuestion: () => dispatch({type: 'UPDATE_QUESTION'}),
-  selectAnswer: (index) => dispatch({type: 'SELECT_ANSWER', index: index})
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, null)(App)
