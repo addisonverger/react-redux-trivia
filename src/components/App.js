@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import '../styles/App.css';
 import HomePage from '../containers/Home-Page.js'
@@ -19,6 +20,17 @@ class App extends Component {
     this.setState({
       currentPage: currentPage
     })
+  }
+  componentDidMount() {
+    axios.get('https://api.giphy.com/v1/stickers/random?api_key=3DtOtJIBdw5PBylAeiZEFPp0pAdKYlbH')
+    .then((response) => {
+      console.log(response.data.data.images.original.url)
+      let responseURL = 'url(' + response.data.data.images.original.url + ')'
+      document.body.style.backgroundImage = responseURL
+      document.body.style.backgroundRepeat = "repeat"
+      document.body.style.backgroundPosition = "center"
+    })
+    .catch((error) => {console.log(error)})
   }
   render() {
     const contents = {
