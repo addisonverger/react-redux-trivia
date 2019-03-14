@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-import '../styles/App.css';
 import HomePage from '../containers/Home-Page.js'
 import GamePage from '../containers/Game-Page.js'
 import ScorePage from '../containers/Score-Page.js'
@@ -21,7 +20,7 @@ class App extends Component {
       currentPage: currentPage
     })
   }
-  randomGIF = () => {
+  randomGIF() {
     axios.get('https://api.giphy.com/v1/stickers/random?api_key=3DtOtJIBdw5PBylAeiZEFPp0pAdKYlbH')
     .then((response) => {
       let responseURL = 'url(' + response.data.data.images.original.url + ')'

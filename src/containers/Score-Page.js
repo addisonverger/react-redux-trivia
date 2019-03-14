@@ -4,7 +4,6 @@ import {Box} from 'react-bulma-components/full'
 import {Level} from 'react-bulma-components/full'
 import {Heading} from 'react-bulma-components/full'
 import {Button} from 'react-bulma-components/full'
-import {Icon} from 'react-bulma-components/full'
 
 const ScorePage = (props) => {
   return (

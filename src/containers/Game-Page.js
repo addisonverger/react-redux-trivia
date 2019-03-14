@@ -9,7 +9,6 @@ import ScoreButton from './ScoreButton.js'
 import {Box} from 'react-bulma-components/full'
 import {Level} from 'react-bulma-components/full'
 import {Heading} from 'react-bulma-components/full'
-import {Icon} from 'react-bulma-components/full'
 import {Tile} from 'react-bulma-components/full'
 
 var Timer = require('easytimer.js').Timer;
@@ -86,7 +85,8 @@ class GamePage extends Component {
             {this.props.currentQuestion.scoreButton ?
               <ScoreButton openPage={this.props.openPage}
                             updateTime={this.props.updateTime}
-                            currentTime={this.state.currentTime}/> : ''}
+                            currentTime={this.state.currentTime}
+                            updateStats={this.props.updateStats}/> : ''}
           </Level>
         </Box>
       </div>
@@ -101,7 +101,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   updateQuestion: () => dispatch({type: 'UPDATE_QUESTION'}),
   selectAnswer: (index) => dispatch({type: 'SELECT_ANSWER', index: index}),
-  updateTime: (time) => dispatch({type: 'UPDATE_TIME', time: time})
+  updateTime: (time) => dispatch({type: 'UPDATE_TIME', time: time}),
+  updateStats: () => dispatch({type: 'UPDATE_STATS'})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage)

@@ -6,6 +6,7 @@ import {Button} from 'react-bulma-components/full'
 function handleClick(props) {
   props.openPage('score-page')
   props.updateTime(props.currentTime)
+  props.updateStats()
 }
 
 const ScoreButton = (props) => {

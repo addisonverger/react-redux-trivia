@@ -63,69 +63,67 @@ class HomePage extends Component {
               </Heading>
             </div>
           </Section>
-          <Section>
-            <form onSubmit={(event) => this.handlePlay(event)}>
-              <Form.Field>
-                <Form.Label>
-                  Categories
-                </Form.Label>
-                <Form.Control>
-                  <Form.Select value={this.state.categoryValue}
-                              onChange={(event) => this.updateCategory(event)}
-                              className="is-fullwidth">
-                    <option key="0" value="">
-                      Any Category
-                    </option>
-                    {this.state.categories.map((category) => {
-                      return (
-                        <option key={category.id}
-                                value={category.id}>
-                          {category.name}
-                        </option>
-                      )
-                    })}
-                  </Form.Select>
-                </Form.Control>
-              </Form.Field>
-              <Form.Field>
-                <Form.Label>
-                  Difficulty
-                </Form.Label>
-                <Form.Control>
-                  <Form.Select value={this.state.difficultyValue}
-                              onChange={(event) => this.updateDifficulty(event)}
-                              className="is-fullwidth">
-                    <option value="">Any Difficulty</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                  </Form.Select>
-                </Form.Control>
-              </Form.Field>
-              <Form.Field>
-                <Form.Control>
-                  <Button className="is-link is-outlined is-fullwidth"
-                          type="submit">
-                    Play
-                  </Button>
-                </Form.Control>
-              </Form.Field>
-              <Form.Field>
-                <Form.Control>
-                  <About />
-                </Form.Control>
-              </Form.Field>
-              <Form.Field>
-                <Form.Control>
-                  <Button className="is-link is-outlined is-fullwidth"
-                          type="button"
-                          onClick={() => this.props.randomGIF()}>
-                    Pick Your Toppings
-                  </Button>
-                </Form.Control>
-              </Form.Field>
-            </form>
-          </Section>
+          <form onSubmit={(event) => this.handlePlay(event)}>
+            <Form.Field>
+              <Form.Label>
+                Categories
+              </Form.Label>
+              <Form.Control>
+                <Form.Select value={this.state.categoryValue}
+                            onChange={(event) => this.updateCategory(event)}
+                            className="is-fullwidth">
+                  <option key="0" value="">
+                    Any Category
+                  </option>
+                  {this.state.categories.map((category) => {
+                    return (
+                      <option key={category.id}
+                              value={category.id}>
+                        {category.name}
+                      </option>
+                    )
+                  })}
+                </Form.Select>
+              </Form.Control>
+            </Form.Field>
+            <Form.Field>
+              <Form.Label>
+                Difficulty
+              </Form.Label>
+              <Form.Control>
+                <Form.Select value={this.state.difficultyValue}
+                            onChange={(event) => this.updateDifficulty(event)}
+                            className="is-fullwidth">
+                  <option value="">Any Difficulty</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </Form.Select>
+              </Form.Control>
+            </Form.Field>
+            <Form.Field>
+              <Form.Control>
+                <Button className="is-link is-outlined is-fullwidth"
+                        type="submit">
+                  Play
+                </Button>
+              </Form.Control>
+            </Form.Field>
+            <Form.Field>
+              <Form.Control>
+                <About />
+              </Form.Control>
+            </Form.Field>
+            <Form.Field>
+              <Form.Control>
+                <Button className="is-link is-outlined is-fullwidth"
+                        type="button"
+                        onClick={() => this.props.randomGIF()}>
+                  Pick Your Toppings
+                </Button>
+              </Form.Control>
+            </Form.Field>
+          </form>
         </Box>
       </div>
     )

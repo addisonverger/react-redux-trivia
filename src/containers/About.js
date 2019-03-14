@@ -28,7 +28,8 @@ class About extends Component {
               </Message.Header>
               <Message.Body>
                 Small Potatoes is a basic trivia game. First select a trivia category and
-                level of difficulty. Then play a 10 question round of trivia.
+                level of difficulty. Then play a 10 question round of trivia. Keep playing
+                to try and beat your best score and time.
               </Message.Body>
             </Message>
           </Modal.Content>

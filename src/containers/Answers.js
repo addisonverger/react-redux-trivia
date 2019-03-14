@@ -11,6 +11,7 @@ const Answers = (props) => {
             <Tile key={index}
                   kind="child"
                   color={answer.color}
+                  style={{cursor: 'pointer'}}
                   onClick={() => props.selectAnswer(index)}
                   notification>
               <p>{props.decodeHtml(answer.text)}</p>
