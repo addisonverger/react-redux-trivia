@@ -19,7 +19,7 @@ class About extends Component {
   render() {
     return (
       <div>
-        <Button type="button" className="is-link is-fullwidth" onClick={() => this.toggleModal()}>About</Button>
+        <Button type="button" className="is-link is-outlined is-fullwidth" onClick={() => this.toggleModal()}>About</Button>
         <Modal show={this.state.open} onClose={() => this.toggleModal()}>
           <Modal.Content>
             <Message className="is-link">

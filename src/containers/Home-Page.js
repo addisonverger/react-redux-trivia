@@ -51,15 +51,17 @@ class HomePage extends Component {
     .catch((error) => {console.log(error)})
   }
   render() {
-    console.log(this.props)
     return (
       <div>
         <Box className="m-auto">
           <Section>
-            <Heading size={2}
-                    className="has-text-primary">
-              Small Potatoes
-            </Heading>
+            <div style={{textAlign: "center"}}>
+              <Heading size={1}
+                      className="has-text-dark headingFont"
+                      style={{display: "inline-block", textAlign: "left"}}>
+                small<br /> POTATOES
+              </Heading>
+            </div>
           </Section>
           <Section>
             <form onSubmit={(event) => this.handlePlay(event)}>
@@ -102,7 +104,7 @@ class HomePage extends Component {
               </Form.Field>
               <Form.Field>
                 <Form.Control>
-                  <Button className="is-link is-fullwidth"
+                  <Button className="is-link is-outlined is-fullwidth"
                           type="submit">
                     Play
                   </Button>
@@ -115,10 +117,10 @@ class HomePage extends Component {
               </Form.Field>
               <Form.Field>
                 <Form.Control>
-                  <Button className="is-link is-fullwidth"
+                  <Button className="is-link is-outlined is-fullwidth"
                           type="button"
                           onClick={() => this.props.randomGIF()}>
-                    Change Background
+                    Pick Your Toppings
                   </Button>
                 </Form.Control>
               </Form.Field>

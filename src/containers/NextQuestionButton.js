@@ -9,7 +9,7 @@ const NextQuestionButton = (props) => {
       <Level.Side align="right">
         <Level.Item>
           <Button type="button"
-                  className="is-link"
+                  className="is-link is-outlined"
                   onClick={() => props.updateQuestion()}>
             Next Question
           </Button>

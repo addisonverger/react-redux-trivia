@@ -14,7 +14,7 @@ const ScoreButton = (props) => {
       <Level.Side align="right">
         <Level.Item>
           <Button type="button"
-                  className="is-link"
+                  className="is-link is-outlined"
                   onClick={() => handleClick(props)}>
             Final Score
           </Button>

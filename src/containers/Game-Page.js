@@ -67,7 +67,7 @@ class GamePage extends Component {
           </Level>
           <Tile kind="ancestor">
             <Tile kind="parent">
-              <Tile kind="child" notification color="primary">
+              <Tile kind="child" notification color="dark">
                 <p>{this.decodeHtml(this.props.currentQuestion.question)}</p>
               </Tile>
             </Tile>

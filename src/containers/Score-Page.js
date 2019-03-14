@@ -12,7 +12,8 @@ const ScorePage = (props) => {
       <Box className="m-auto">
         <Level>
           <Level.Item>
-            <Heading size={1}>
+            <Heading size={1}
+                    className="headingFont">
               Your Score
             </Heading>
           </Level.Item>
@@ -20,9 +21,9 @@ const ScorePage = (props) => {
         <Level>
           <Level.Item>
             <Heading size={3}>
-              {props.score > 7 ? 'Great Job' : null}
-              {props.score > 5 && props.score < 8 ? 'Nice Work' : null}
-              {props.score < 6 ? 'Better Luck Next Time' : null}
+              {props.score > 7 ? 'You were tot well Spud Muffin.' : null}
+              {props.score > 5 && props.score < 8 ? 'I yam proud of you.' : null}
+              {props.score < 6 ? 'Tough taters. Fry again.' : null}
             </Heading>
           </Level.Item>
         </Level>
@@ -42,7 +43,7 @@ const ScorePage = (props) => {
         </Level>
         <Level className="questionNumber">
           <Button type="button"
-                  className="is-link is-medium is-fullwidth"
+                  className="is-link is-outlined is-medium is-fullwidth"
                   onClick={() => props.openPage('home-page')}>
             New Game
           </Button>

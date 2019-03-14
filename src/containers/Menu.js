@@ -20,7 +20,7 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <Button type="button" className="is-link" onClick={() => this.toggleModal()}>Menu</Button>
+        <Button type="button" className="is-link is-outlined" onClick={() => this.toggleModal()}>Menu</Button>
         <Modal show={this.state.open} onClose={() => this.toggleModal()}>
           <Modal.Content>
             <Message className="is-link">
@@ -30,14 +30,14 @@ class Menu extends Component {
               <Message.Body>
                 <Level>
                   <Button type="button"
-                          className="is-link is-medium is-fullwidth"
+                          className="is-link is-outlined is-medium is-fullwidth"
                           onClick={() => this.props.openPage('home-page')}>
                     Quit
                   </Button>
                 </Level>
                 <Level>
                   <Button type="button"
-                          className="is-link is-medium is-fullwidth"
+                          className="is-link is-outlined is-medium is-fullwidth"
                           onClick={() => this.toggleModal()}>
                     Continue
                   </Button>
