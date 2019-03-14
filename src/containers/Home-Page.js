@@ -51,6 +51,7 @@ class HomePage extends Component {
     .catch((error) => {console.log(error)})
   }
   render() {
+    console.log(this.props)
     return (
       <div>
         <Box className="m-auto">
@@ -110,6 +111,15 @@ class HomePage extends Component {
               <Form.Field>
                 <Form.Control>
                   <About />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Control>
+                  <Button className="is-link is-fullwidth"
+                          type="button"
+                          onClick={() => this.props.randomGIF()}>
+                    Change Background
+                  </Button>
                 </Form.Control>
               </Form.Field>
             </form>
