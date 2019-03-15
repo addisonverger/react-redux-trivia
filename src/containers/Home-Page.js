@@ -63,7 +63,12 @@ class HomePage extends Component {
           <Section>
             <div style={{textAlign: "center"}}>
               <Heading size={1}
-                      className="has-text-dark headingFont"
+                      className="has-text-dark headingFont is-hidden-touch"
+                      style={{display: "inline-block", textAlign: "left"}}>
+                small<br /> POTATOES
+              </Heading>
+              <Heading size={2}
+                      className="has-text-dark headingFont is-hidden-desktop"
                       style={{display: "inline-block", textAlign: "left"}}>
                 small<br /> POTATOES
               </Heading>
@@ -127,7 +132,7 @@ class HomePage extends Component {
             </Form.Field>
             <Form.Field>
               <Form.Control>
-                <Button className="is-link is-outlined is-fullwidth"
+                <Button className="is-link is-outlined is-fullwidth is-hidden-mobile"
                         type="button"
                         onClick={(event) => this.handleRandomGIF(event)}>
                   Pick Your Toppings

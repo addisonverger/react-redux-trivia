@@ -37,9 +37,6 @@ class App extends Component {
   }
   componentDidMount() {
     this.randomGIF()
-    document.body.style.backgroundRepeat = "repeat"
-    document.body.style.backgroundPosition = "center"
-    document.body.style.backgroundSize = "100px"
     this.getTriviaToken()
   }
   render() {

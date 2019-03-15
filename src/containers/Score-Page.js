@@ -12,7 +12,11 @@ const ScorePage = (props) => {
         <Level>
           <Level.Item>
             <Heading size={1}
-                    className="headingFont">
+                    className="headingFont is-hidden-touch">
+              Your Score
+            </Heading>
+            <Heading size={2}
+                    className="headingFont is-hidden-desktop">
               Your Score
             </Heading>
           </Level.Item>
