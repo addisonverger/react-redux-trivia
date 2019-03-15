@@ -47,7 +47,6 @@ class HomePage extends Component {
     axios.get('https://opentdb.com/api.php?amount=10&type=multiple' +
     categoryParam + difficultyParam + tokenParam)
     .then((response) => {
-      console.log(response)
       this.props.updateQuestionSet(response.data)
       this.props.openPage('game-page')
     })

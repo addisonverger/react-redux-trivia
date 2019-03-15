@@ -1,46 +1,4 @@
-const allAnswers = (question) => {
-  let answers = question.incorrect_answers.slice().map((answer) => {
-    return (
-      {text: answer, isSelected: false, isCorrect: false, color: null}
-    )
-  })
-
-  answers.push({text: question.correct_answer, isSelected: false, isCorrect: true, color: null})
-
-  for (let i = answers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [answers[i], answers[j]] = [answers[j], answers[i]];
-    }
-
-  return answers
-}
-
-const currentQuestion = (question, questionNumber, index) => {
-  return (
-    {
-      category: question[index].category,
-      questionNumber: questionNumber,
-      index: index,
-      question: question[index].question,
-      answers: allAnswers(question[index]),
-      nextQuestionButton: false,
-      scoreButton: false
-    }
-  )
-}
-
-var TimeFormat = require('hh-mm-ss')
-
-const handleTimePlayed = (totalTime, currentTime) => {
-  console.log(totalTime, currentTime)
-  let secondsTimePlayed = TimeFormat.toS(totalTime, 'hh:mm:ss')
-  console.log(secondsTimePlayed)
-  let secondsTime = TimeFormat.toS(currentTime, 'hh:mm:ss')
-  console.log(secondsTime)
-  let sumTime = secondsTimePlayed + secondsTime
-  console.log(sumTime)
-  return(TimeFormat.fromS(sumTime, 'hh:mm:ss'))
-}
+import { currentQuestion, handleTimePlayed, answerCoding } from './reducerFunctions.js'
 
 const inititalState = {
   token:'',
@@ -95,15 +53,9 @@ const gameReducer = (state = inititalState, action) => {
       if (isSelected === undefined) {
         newCurrentQuestion.answers[action.index].isSelected = true
         newCurrentQuestion.answers.forEach((answer) => {
-          if (answer.isCorrect) {
-            answer.color = "success"
-             if (answer.isSelected) {
-               newScore = ++state.score
-             }
-          } else if (answer.isSelected && !answer.isCorrect) {
-            answer.color = "danger"
-          } else {
-            answer.color = null
+          answerCoding(answer)
+          if (answer.isCorrect && answer.isSelected) {
+            ++newScore
           }
         })
         if (newCurrentQuestion.questionNumber === state.questionSet.results.length) {
