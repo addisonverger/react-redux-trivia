@@ -28,11 +28,19 @@ class App extends Component {
     })
     .catch((error) => {console.log(error)})
   }
+  getTriviaToken() {
+    axios.get('https://opentdb.com/api_token.php?command=request')
+    .then((response) => {
+      this.props.updateToken(response.data.token)
+    })
+    .catch((error) => {console.log(error)})
+  }
   componentDidMount() {
     this.randomGIF()
     document.body.style.backgroundRepeat = "repeat"
     document.body.style.backgroundPosition = "center"
     document.body.style.backgroundSize = "100px"
+    this.getTriviaToken()
   }
   render() {
     const contents = {
@@ -64,4 +72,8 @@ const mapStateToProps = (state) => ({
   time: state.time
 })
 
-export default connect(mapStateToProps, null)(App)
+const mapDispatchToProps = (dispatch) => ({
+  updateToken: (token) => dispatch({type: 'UPDATE_TOKEN', token: token})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

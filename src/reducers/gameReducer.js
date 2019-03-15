@@ -43,6 +43,7 @@ const handleTimePlayed = (totalTime, currentTime) => {
 }
 
 const inititalState = {
+  token:'',
   questionSet: {},
   currentQuestion: {},
   score: 0,
@@ -61,15 +62,21 @@ function deepCopy(x) {
 }
 
 const gameReducer = (state = inititalState, action) => {
+  let newToken = deepCopy(state.token)
   let newQuestionSet = deepCopy(state.questionSet)
   let newCurrentQuestion = deepCopy(state.currentQuestion)
   let newScore = deepCopy(state.score)
   let newTime = deepCopy(state.time)
   let newStats = deepCopy(state.stats)
 
-  console.log(newStats)
-
   switch (action.type) {
+    case 'UPDATE_TOKEN':
+      newToken = action.token
+      return {
+        ...state,
+        token: newToken
+      }
+
     case 'UPDATE_QUESTION_SET':
       newQuestionSet = action.data
       newCurrentQuestion = currentQuestion(action.data.results, 1, 0)

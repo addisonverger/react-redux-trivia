@@ -43,9 +43,11 @@ class HomePage extends Component {
     event.preventDefault()
     const categoryParam = (this.state.categoryValue === '' ? '' : '&category=' + this.state.categoryValue)
     const difficultyParam = (this.state.difficultyValue === '' ? '' : '&difficulty=' + this.state.difficultyValue)
+    const tokenParam = '&token=' + this.props.token
     axios.get('https://opentdb.com/api.php?amount=10&type=multiple' +
-    categoryParam + difficultyParam)
+    categoryParam + difficultyParam + tokenParam)
     .then((response) => {
+      console.log(response)
       this.props.updateQuestionSet(response.data)
       this.props.openPage('game-page')
     })
@@ -140,8 +142,12 @@ class HomePage extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  token: state.token
+})
+
 const mapDispatchToProps = (dispatch) => ({
   updateQuestionSet: (response) => dispatch({type: 'UPDATE_QUESTION_SET', data: response})
 })
 
-export default connect(null, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
