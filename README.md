@@ -6,8 +6,7 @@
 
 This app uses the following technologies:
 
-* [Create React App](https://github.com/facebook/create-react-app)
-* [React](https://reactjs.org/)
+* [React](https://reactjs.org/): bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 * [Redux](https://redux.js.org/)
 * APIs:
     * [Open Trivia Database](https://opentdb.com/api_config.php)
