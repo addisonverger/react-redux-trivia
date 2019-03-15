@@ -137,7 +137,7 @@ const gameReducer = (state = inititalState, action) => {
       if (newTime < newStats.bestTime) {
         newStats.bestTime = newTime
       }
-      newStats.avgScore = ((newStats.avgScore * (newStats.gamesPlayed - 1)) + newScore) / newStats.gamesPlayed
+      newStats.avgScore = Math.round(((newStats.avgScore * (newStats.gamesPlayed - 1)) + newScore) / newStats.gamesPlayed)
       newStats.timePlayed = handleTimePlayed(newStats.timePlayed, newTime)
       return {
         ...state,
