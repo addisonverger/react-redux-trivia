@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 import About from './About.js'
+import Stats from './Stats.js'
 
 import {Box} from 'react-bulma-components/full'
 import {Section} from 'react-bulma-components/full'
@@ -49,6 +50,10 @@ class HomePage extends Component {
       this.props.openPage('game-page')
     })
     .catch((error) => {console.log(error)})
+  }
+  handleRandomGIF = (event) => {
+    this.props.randomGIF()
+    event.target.blur()
   }
   render() {
     return (
@@ -116,9 +121,14 @@ class HomePage extends Component {
             </Form.Field>
             <Form.Field>
               <Form.Control>
+                <Stats />
+              </Form.Control>
+            </Form.Field>
+            <Form.Field>
+              <Form.Control>
                 <Button className="is-link is-outlined is-fullwidth"
                         type="button"
-                        onClick={() => this.props.randomGIF()}>
+                        onClick={(event) => this.handleRandomGIF(event)}>
                   Pick Your Toppings
                 </Button>
               </Form.Control>

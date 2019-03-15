@@ -29,13 +29,31 @@ const currentQuestion = (question, questionNumber, index) => {
   )
 }
 
+var TimeFormat = require('hh-mm-ss')
+
+const handleTimePlayed = (totalTime, currentTime) => {
+  console.log(totalTime, currentTime)
+  let secondsTimePlayed = TimeFormat.toS(totalTime, 'hh:mm:ss')
+  console.log(secondsTimePlayed)
+  let secondsTime = TimeFormat.toS(currentTime, 'hh:mm:ss')
+  console.log(secondsTime)
+  let sumTime = secondsTimePlayed + secondsTime
+  console.log(sumTime)
+  return(TimeFormat.fromS(sumTime, 'hh:mm:ss'))
+}
+
 const inititalState = {
   questionSet: {},
   currentQuestion: {},
   score: 0,
-  bestScore: 0,
   time: '',
-  bestTime: ''
+  stats: {
+    bestScore: 0,
+    bestTime: '',
+    avgScore: 0,
+    timePlayed: '00:00:00',
+    gamesPlayed: 0
+  }
 }
 
 function deepCopy(x) {
@@ -47,8 +65,9 @@ const gameReducer = (state = inititalState, action) => {
   let newCurrentQuestion = deepCopy(state.currentQuestion)
   let newScore = deepCopy(state.score)
   let newTime = deepCopy(state.time)
-  let newBestScore = deepCopy(state.bestScore)
-  let newBestTime = deepCopy(state.bestTime)
+  let newStats = deepCopy(state.stats)
+
+  console.log(newStats)
 
   switch (action.type) {
     case 'UPDATE_QUESTION_SET':
@@ -107,20 +126,28 @@ const gameReducer = (state = inititalState, action) => {
       }
 
     case 'UPDATE_STATS':
-      if (newBestScore === 0 && newBestTime === '') {
-        newBestScore = newScore
-        newBestTime = newTime
+      newStats.gamesPlayed++
+      if (newStats.bestScore === 0 && newStats.bestTime === '') {
+        newStats.bestScore = newScore
+        newStats.bestTime = newTime
       }
-      if (newScore > newBestScore) {
-        newBestScore = newScore
+      if (newScore > newStats.bestScore) {
+        newStats.bestScore = newScore
       }
-      if (newTime < newBestTime) {
-        newBestTime = newTime
+      if (newTime < newStats.bestTime) {
+        newStats.bestTime = newTime
       }
+      newStats.avgScore = ((newStats.avgScore * (newStats.gamesPlayed - 1)) + newScore) / newStats.gamesPlayed
+      newStats.timePlayed = handleTimePlayed(newStats.timePlayed, newTime)
       return {
         ...state,
-        bestScore: newBestScore,
-        bestTime: newBestTime
+        stats: {
+          bestScore: newStats.bestScore,
+          bestTime: newStats.bestTime,
+          avgScore: newStats.avgScore,
+          timePlayed: newStats.timePlayed,
+          gamesPlayed: newStats.gamesPlayed
+        }
       }
 
     default:
